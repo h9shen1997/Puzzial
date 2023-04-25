@@ -1,0 +1,24 @@
+gantt    
+title Puzzial App Ghant Diagram  
+dateFormat  YYYY-MM-DD
+section Implem1    
+Home page implementation: crit, home_page, 2023-03-13, 7d
+Login API: login_api, 2023-03-16, 3d    
+section Implem2    
+Progress save implementation: crit, progress_save, after home_page, 7d
+Level difficulty selection: level_difficulty, 2023-03-23, 5d    
+First milestone: milestone, 2023-03-28    
+section Implem3    
+Image upload and crop functionality: crit, crop, after progress_save, 7d
+Implement puzzle cutting and reassemble algorithm: crit, puzzle, 2023-03-25, 14d    
+Second milestone: milestone, 2023-04-08    
+section Implem4        
+Hint implementation: after puzzle, 3d    
+section Implem5
+Synchronous playing implementation: play, after audio, 10d    
+Game finish: after play, 3d   
+Third milestone: milestone, 2023-04-16    
+section Test   
+unit/integ testing: 5d    
+section Prepare for submission    
+Final milestone: milestone, 2023-04-23

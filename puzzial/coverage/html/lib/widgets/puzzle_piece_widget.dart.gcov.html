@@ -1,0 +1,361 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>LCOV - lcov.info - lib/widgets/puzzle_piece_widget.dart</title>
+  <link rel="stylesheet" type="text/css" href="../../gcov.css">
+</head>
+
+<body>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="title">LCOV - code coverage report</td></tr>
+    <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+
+    <tr>
+      <td width="100%">
+        <table cellpadding=1 border=0 width="100%">
+          <tr>
+            <td width="10%" class="headerItem">Current view:</td>
+            <td width="35%" class="headerValue"><a href="../../index.html">top level</a> - <a href="index.html">lib/widgets</a> - puzzle_piece_widget.dart<span style="font-size: 80%;"> (source / <a href="puzzle_piece_widget.dart.func-sort-c.html">functions</a>)</span></td>
+            <td width="5%"></td>
+            <td width="15%"></td>
+            <td width="10%" class="headerCovTableHead">Hit</td>
+            <td width="10%" class="headerCovTableHead">Total</td>
+            <td width="15%" class="headerCovTableHead">Coverage</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Test:</td>
+            <td class="headerValue">lcov.info</td>
+            <td></td>
+            <td class="headerItem">Lines:</td>
+            <td class="headerCovTableEntry">51</td>
+            <td class="headerCovTableEntry">150</td>
+            <td class="headerCovTableEntryLo">34.0 %</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Date:</td>
+            <td class="headerValue">2023-04-23 23:10:27</td>
+            <td></td>
+            <td class="headerItem">Functions:</td>
+            <td class="headerCovTableEntry">0</td>
+            <td class="headerCovTableEntry">0</td>
+            <td class="headerCovTableEntryHi">-</td>
+          </tr>
+          <tr><td><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+        </table>
+      </td>
+    </tr>
+
+    <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+  </table>
+
+  <table cellpadding=0 cellspacing=0 border=0>
+    <tr>
+      <td><br></td>
+    </tr>
+    <tr>
+      <td>
+<pre class="sourceHeading">          Line data    Source code</pre>
+<pre class="source">
+<a name="1"><span class="lineNum">       1 </span>            : import 'dart:async';</a>
+<a name="2"><span class="lineNum">       2 </span>            : import 'package:firebase_database/firebase_database.dart';</a>
+<a name="3"><span class="lineNum">       3 </span>            : import 'package:flutter/material.dart';</a>
+<a name="4"><span class="lineNum">       4 </span>            : import 'package:provider/provider.dart';</a>
+<a name="5"><span class="lineNum">       5 </span>            : import 'package:puzzial/screens/post_game_screen.dart';</a>
+<a name="6"><span class="lineNum">       6 </span>            : import 'package:puzzial/state/game_state.dart';</a>
+<a name="7"><span class="lineNum">       7 </span>            : </a>
+<a name="8"><span class="lineNum">       8 </span>            : /// A widget representing a puzzle piece.</a>
+<a name="9"><span class="lineNum">       9 </span>            : ///</a>
+<a name="10"><span class="lineNum">      10 </span>            : /// This widget creates a draggable puzzle piece with a sub-image and position.</a>
+<a name="11"><span class="lineNum">      11 </span>            : /// The puzzle piece can be assembled by dragging it to the correct location.</a>
+<a name="12"><span class="lineNum">      12 </span>            : // ignore: must_be_immutable</a>
+<a name="13"><span class="lineNum">      13 </span>            : class PuzzlePiece extends StatefulWidget {</a>
+<a name="14"><span class="lineNum">      14 </span>            :   final int pieceId;</a>
+<a name="15"><span class="lineNum">      15 </span>            :   final Image subImage;</a>
+<a name="16"><span class="lineNum">      16 </span>            :   bool isAssembled;</a>
+<a name="17"><span class="lineNum">      17 </span>            :   bool isOccupied;</a>
+<a name="18"><span class="lineNum">      18 </span>            :   Offset position;</a>
+<a name="19"><span class="lineNum">      19 </span>            :   Offset previousPosition;</a>
+<a name="20"><span class="lineNum">      20 </span>            : </a>
+<a name="21"><span class="lineNum">      21 </span><span class="lineCov">          5 :   PuzzlePiece({</span></a>
+<a name="22"><span class="lineNum">      22 </span>            :     Key? key,</a>
+<a name="23"><span class="lineNum">      23 </span>            :     required this.pieceId,</a>
+<a name="24"><span class="lineNum">      24 </span>            :     required this.subImage,</a>
+<a name="25"><span class="lineNum">      25 </span>            :     required this.position,</a>
+<a name="26"><span class="lineNum">      26 </span>            :     required this.previousPosition,</a>
+<a name="27"><span class="lineNum">      27 </span>            :     this.isAssembled = false,</a>
+<a name="28"><span class="lineNum">      28 </span>            :     this.isOccupied = false,</a>
+<a name="29"><span class="lineNum">      29 </span><span class="lineCov">          5 :   }) : super(key: key);</span></a>
+<a name="30"><span class="lineNum">      30 </span>            : </a>
+<a name="31"><span class="lineNum">      31 </span><span class="lineCov">          1 :   @override</span></a>
+<a name="32"><span class="lineNum">      32 </span><span class="lineCov">          1 :   PuzzlePieceState createState() =&gt; PuzzlePieceState();</span></a>
+<a name="33"><span class="lineNum">      33 </span>            : }</a>
+<a name="34"><span class="lineNum">      34 </span>            : </a>
+<a name="35"><span class="lineNum">      35 </span>            : /// The state object for [PuzzlePiece].</a>
+<a name="36"><span class="lineNum">      36 </span>            : class PuzzlePieceState extends State&lt;PuzzlePiece&gt;</a>
+<a name="37"><span class="lineNum">      37 </span>            :     with TickerProviderStateMixin {</a>
+<a name="38"><span class="lineNum">      38 </span>            :   Offset touchOffset = Offset.zero;</a>
+<a name="39"><span class="lineNum">      39 </span>            : </a>
+<a name="40"><span class="lineNum">      40 </span>            :   late AnimationController _opacityController;</a>
+<a name="41"><span class="lineNum">      41 </span>            :   late Animation&lt;double&gt; _opacityAnimation;</a>
+<a name="42"><span class="lineNum">      42 </span>            :   late StreamSubscription&lt;DatabaseEvent&gt; _pieceSubscription;</a>
+<a name="43"><span class="lineNum">      43 </span>            :   late StreamSubscription&lt;DatabaseEvent&gt; _gameStateSubscription;</a>
+<a name="44"><span class="lineNum">      44 </span>            : </a>
+<a name="45"><span class="lineNum">      45 </span><span class="lineCov">          1 :   @override</span></a>
+<a name="46"><span class="lineNum">      46 </span>            :   void initState() {</a>
+<a name="47"><span class="lineNum">      47 </span><span class="lineCov">          1 :     super.initState();</span></a>
+<a name="48"><span class="lineNum">      48 </span><span class="lineCov">          2 :     _opacityController = AnimationController(</span></a>
+<a name="49"><span class="lineNum">      49 </span>            :       vsync: this,</a>
+<a name="50"><span class="lineNum">      50 </span>            :       duration: const Duration(milliseconds: 1000),</a>
+<a name="51"><span class="lineNum">      51 </span>            :     );</a>
+<a name="52"><span class="lineNum">      52 </span><span class="lineCov">          1 :     _opacityAnimation =</span></a>
+<a name="53"><span class="lineNum">      53 </span><span class="lineCov">          3 :         Tween&lt;double&gt;(begin: 0.5, end: 1.0).animate(_opacityController);</span></a>
+<a name="54"><span class="lineNum">      54 </span><span class="lineCov">          1 :     final GameState state = GameState.instance;</span></a>
+<a name="55"><span class="lineNum">      55 </span><span class="lineCov">          2 :     state.addListener(_onGameStateChange);</span></a>
+<a name="56"><span class="lineNum">      56 </span><span class="lineCov">          1 :     _setupFirebaseListeners();</span></a>
+<a name="57"><span class="lineNum">      57 </span><span class="lineCov">          2 :     _opacityController.addStatusListener((status) {</span></a>
+<a name="58"><span class="lineNum">      58 </span><span class="lineNoCov">          0 :       if (status == AnimationStatus.completed &amp;&amp; state.isGameOver) {</span></a>
+<a name="59"><span class="lineNum">      59 </span><span class="lineNoCov">          0 :         _navigateToCongratsPage();</span></a>
+<a name="60"><span class="lineNum">      60 </span>            :       }</a>
+<a name="61"><span class="lineNum">      61 </span>            :     });</a>
+<a name="62"><span class="lineNum">      62 </span>            :   }</a>
+<a name="63"><span class="lineNum">      63 </span>            : </a>
+<a name="64"><span class="lineNum">      64 </span>            :   /// Resets the game over state in the [GameState] instance.</a>
+<a name="65"><span class="lineNum">      65 </span>            :   ///</a>
+<a name="66"><span class="lineNum">      66 </span>            :   /// This method sets the game over state in the [GameState] instance to false,</a>
+<a name="67"><span class="lineNum">      67 </span>            :   /// indicating that the game is no longer in a game over state.</a>
+<a name="68"><span class="lineNum">      68 </span><span class="lineNoCov">          0 :   void _resetGameOver() {</span></a>
+<a name="69"><span class="lineNum">      69 </span><span class="lineNoCov">          0 :     GameState.instance.setGameOver(false);</span></a>
+<a name="70"><span class="lineNum">      70 </span>            :   }</a>
+<a name="71"><span class="lineNum">      71 </span>            : </a>
+<a name="72"><span class="lineNum">      72 </span>            :   /// Navigates to the congratulations page.</a>
+<a name="73"><span class="lineNum">      73 </span>            :   ///</a>
+<a name="74"><span class="lineNum">      74 </span>            :   /// This method pushes a new [GameEndPage] onto the navigation stack. When the</a>
+<a name="75"><span class="lineNum">      75 </span>            :   /// &quot;Main Menu&quot; button is pressed on the congratulations page, the [_resetGameOver]</a>
+<a name="76"><span class="lineNum">      76 </span>            :   /// method is called to reset the game over state.</a>
+<a name="77"><span class="lineNum">      77 </span><span class="lineNoCov">          0 :   void _navigateToCongratsPage() {</span></a>
+<a name="78"><span class="lineNum">      78 </span><span class="lineNoCov">          0 :     Navigator.push(</span></a>
+<a name="79"><span class="lineNum">      79 </span><span class="lineNoCov">          0 :       context,</span></a>
+<a name="80"><span class="lineNum">      80 </span><span class="lineNoCov">          0 :       MaterialPageRoute(</span></a>
+<a name="81"><span class="lineNum">      81 </span><span class="lineNoCov">          0 :         builder: (context) =&gt; GameEndPage(</span></a>
+<a name="82"><span class="lineNum">      82 </span><span class="lineNoCov">          0 :           onMainMenuPressed: _resetGameOver,</span></a>
+<a name="83"><span class="lineNum">      83 </span>            :         ),</a>
+<a name="84"><span class="lineNum">      84 </span>            :       ),</a>
+<a name="85"><span class="lineNum">      85 </span>            :     );</a>
+<a name="86"><span class="lineNum">      86 </span>            :   }</a>
+<a name="87"><span class="lineNum">      87 </span>            : </a>
+<a name="88"><span class="lineNum">      88 </span>            :   /// Sets up Firebase listeners for puzzle piece and game state updates.</a>
+<a name="89"><span class="lineNum">      89 </span>            :   ///</a>
+<a name="90"><span class="lineNum">      90 </span>            :   /// This method establishes listeners for changes in the position,</a>
+<a name="91"><span class="lineNum">      91 </span>            :   /// assembled status, and occupied status of the puzzle piece, as well</a>
+<a name="92"><span class="lineNum">      92 </span>            :   /// as changes in the game state's components and gameOver properties.</a>
+<a name="93"><span class="lineNum">      93 </span><span class="lineCov">          1 :   void _setupFirebaseListeners() {</span></a>
+<a name="94"><span class="lineNum">      94 </span><span class="lineCov">          3 :     _pieceSubscription = GameState.instance.database!</span></a>
+<a name="95"><span class="lineNum">      95 </span><span class="lineCov">          6 :         .child('${GameState.instance.sessionId}/pieces/${widget.pieceId}')</span></a>
+<a name="96"><span class="lineNum">      96 </span><span class="lineCov">          1 :         .onChildChanged</span></a>
+<a name="97"><span class="lineNum">      97 </span><span class="lineCov">          1 :         .listen((event) {</span></a>
+<a name="98"><span class="lineNum">      98 </span><span class="lineNoCov">          0 :       final GameState state = GameState.instance;</span></a>
+<a name="99"><span class="lineNum">      99 </span><span class="lineNoCov">          0 :       if (event.snapshot.key == 'position') {</span></a>
+<a name="100"><span class="lineNum">     100 </span><span class="lineNoCov">          0 :         final pos = (event.snapshot.value as Map&lt;Object?, Object?&gt;)</span></a>
+<a name="101"><span class="lineNum">     101 </span><span class="lineNoCov">          0 :             .cast&lt;String, double&gt;();</span></a>
+<a name="102"><span class="lineNum">     102 </span><span class="lineNoCov">          0 :         state.notifyGameChange(</span></a>
+<a name="103"><span class="lineNum">     103 </span><span class="lineNoCov">          0 :             pieceId: widget.pieceId, left: pos['left'], top: pos['top']);</span></a>
+<a name="104"><span class="lineNum">     104 </span><span class="lineNoCov">          0 :       } else if (event.snapshot.key == 'top') {</span></a>
+<a name="105"><span class="lineNum">     105 </span><span class="lineNoCov">          0 :         state.notifyGameChange(</span></a>
+<a name="106"><span class="lineNum">     106 </span><span class="lineNoCov">          0 :             pieceId: widget.pieceId, top: event.snapshot.value as double);</span></a>
+<a name="107"><span class="lineNum">     107 </span><span class="lineNoCov">          0 :       } else if (event.snapshot.key == 'isAssembled') {</span></a>
+<a name="108"><span class="lineNum">     108 </span><span class="lineNoCov">          0 :         state.notifyGameChange(</span></a>
+<a name="109"><span class="lineNum">     109 </span><span class="lineNoCov">          0 :             pieceId: widget.pieceId, isAssembled: event.snapshot.value as bool);</span></a>
+<a name="110"><span class="lineNum">     110 </span><span class="lineNoCov">          0 :       } else if (event.snapshot.key == 'isOccupied') {</span></a>
+<a name="111"><span class="lineNum">     111 </span><span class="lineNoCov">          0 :         state.notifyGameChange(</span></a>
+<a name="112"><span class="lineNum">     112 </span><span class="lineNoCov">          0 :             pieceId: widget.pieceId, isOccupied: event.snapshot.value as bool);</span></a>
+<a name="113"><span class="lineNum">     113 </span>            :       }</a>
+<a name="114"><span class="lineNum">     114 </span>            :     });</a>
+<a name="115"><span class="lineNum">     115 </span><span class="lineCov">          3 :     _gameStateSubscription = GameState.instance.database!</span></a>
+<a name="116"><span class="lineNum">     116 </span><span class="lineCov">          3 :         .child(GameState.instance.sessionId!)</span></a>
+<a name="117"><span class="lineNum">     117 </span><span class="lineCov">          1 :         .onChildChanged</span></a>
+<a name="118"><span class="lineNum">     118 </span><span class="lineCov">          1 :         .listen((event) {</span></a>
+<a name="119"><span class="lineNum">     119 </span><span class="lineNoCov">          0 :       final GameState state = GameState.instance;</span></a>
+<a name="120"><span class="lineNum">     120 </span><span class="lineNoCov">          0 :       if (event.snapshot.key == 'components') {</span></a>
+<a name="121"><span class="lineNum">     121 </span><span class="lineNoCov">          0 :         state.notifyGameChange(components: event.snapshot.value as int);</span></a>
+<a name="122"><span class="lineNum">     122 </span><span class="lineNoCov">          0 :       } else if (event.snapshot.key == 'isGameOver') {</span></a>
+<a name="123"><span class="lineNum">     123 </span><span class="lineNoCov">          0 :         state.notifyGameChange(isGameOver: event.snapshot.value as bool);</span></a>
+<a name="124"><span class="lineNum">     124 </span>            :       }</a>
+<a name="125"><span class="lineNum">     125 </span>            :     });</a>
+<a name="126"><span class="lineNum">     126 </span>            :   }</a>
+<a name="127"><span class="lineNum">     127 </span>            : </a>
+<a name="128"><span class="lineNum">     128 </span>            :   /// Cleans up resources and removes listeners before the widget is disposed.</a>
+<a name="129"><span class="lineNum">     129 </span>            :   ///</a>
+<a name="130"><span class="lineNum">     130 </span>            :   /// This method is called when this widget is removed from the tree permanently.</a>
+<a name="131"><span class="lineNum">     131 </span>            :   /// It disposes of the [_opacityController], removes the [_onGameStateChange]</a>
+<a name="132"><span class="lineNum">     132 </span>            :   /// listener from the [GameState] instance, and cancels the [_pieceSubscription]</a>
+<a name="133"><span class="lineNum">     133 </span>            :   /// and [_gameStateSubscription].</a>
+<a name="134"><span class="lineNum">     134 </span><span class="lineCov">          1 :   @override</span></a>
+<a name="135"><span class="lineNum">     135 </span>            :   void dispose() {</a>
+<a name="136"><span class="lineNum">     136 </span><span class="lineCov">          1 :     final GameState state = GameState.instance;</span></a>
+<a name="137"><span class="lineNum">     137 </span><span class="lineCov">          2 :     _opacityController.dispose();</span></a>
+<a name="138"><span class="lineNum">     138 </span><span class="lineCov">          2 :     state.removeListener(_onGameStateChange);</span></a>
+<a name="139"><span class="lineNum">     139 </span><span class="lineCov">          2 :     _pieceSubscription.cancel();</span></a>
+<a name="140"><span class="lineNum">     140 </span><span class="lineCov">          2 :     _gameStateSubscription.cancel();</span></a>
+<a name="141"><span class="lineNum">     141 </span><span class="lineCov">          1 :     super.dispose();</span></a>
+<a name="142"><span class="lineNum">     142 </span>            :   }</a>
+<a name="143"><span class="lineNum">     143 </span>            : </a>
+<a name="144"><span class="lineNum">     144 </span>            :   /// Handles game state changes by animating the opacity of assembled puzzle pieces.</a>
+<a name="145"><span class="lineNum">     145 </span>            :   ///</a>
+<a name="146"><span class="lineNum">     146 </span>            :   /// This method updates the opacity of assembled puzzle pieces when the game state</a>
+<a name="147"><span class="lineNum">     147 </span>            :   /// changes. If all components are assembled or the game is over, the opacity</a>
+<a name="148"><span class="lineNum">     148 </span>            :   /// animation is triggered.</a>
+<a name="149"><span class="lineNum">     149 </span><span class="lineNoCov">          0 :   void _onGameStateChange() {</span></a>
+<a name="150"><span class="lineNum">     150 </span><span class="lineNoCov">          0 :     final GameState state = GameState.instance;</span></a>
+<a name="151"><span class="lineNum">     151 </span><span class="lineNoCov">          0 :     if (state.components == 0 || state.isGameOver == true) {</span></a>
+<a name="152"><span class="lineNum">     152 </span><span class="lineNoCov">          0 :       _opacityController.forward();</span></a>
+<a name="153"><span class="lineNum">     153 </span>            :     }</a>
+<a name="154"><span class="lineNum">     154 </span>            :   }</a>
+<a name="155"><span class="lineNum">     155 </span>            : </a>
+<a name="156"><span class="lineNum">     156 </span>            :   /// Builds the widget tree for the puzzle piece.</a>
+<a name="157"><span class="lineNum">     157 </span>            :   ///</a>
+<a name="158"><span class="lineNum">     158 </span>            :   /// This method returns a [Stack] widget that includes a [Positioned] puzzle piece.</a>
+<a name="159"><span class="lineNum">     159 </span>            : </a>
+<a name="160"><span class="lineNum">     160 </span><span class="lineCov">          1 :   @override</span></a>
+<a name="161"><span class="lineNum">     161 </span>            :   Widget build(BuildContext context) {</a>
+<a name="162"><span class="lineNum">     162 </span><span class="lineCov">          1 :     final GameState state = GameState.instance;</span></a>
+<a name="163"><span class="lineNum">     163 </span><span class="lineCov">          2 :     double boardWidth = state.screenWidth * 0.8;</span></a>
+<a name="164"><span class="lineNum">     164 </span><span class="lineCov">          2 :     double boardHeight = state.screenHeight * 0.8;</span></a>
+<a name="165"><span class="lineNum">     165 </span><span class="lineCov">          2 :     double boardTop = state.screenHeight * 0.05;</span></a>
+<a name="166"><span class="lineNum">     166 </span><span class="lineCov">          2 :     double boardLeft = state.screenWidth * 0.05;</span></a>
+<a name="167"><span class="lineNum">     167 </span>            : </a>
+<a name="168"><span class="lineNum">     168 </span><span class="lineCov">          2 :     return Consumer&lt;GameState&gt;(builder: (context, gameState, child) {</span></a>
+<a name="169"><span class="lineNum">     169 </span><span class="lineCov">          1 :       return Stack(</span></a>
+<a name="170"><span class="lineNum">     170 </span><span class="lineCov">          1 :         children: [</span></a>
+<a name="171"><span class="lineNum">     171 </span><span class="lineCov">          1 :           Positioned(</span></a>
+<a name="172"><span class="lineNum">     172 </span><span class="lineCov">          3 :             left: widget.position.dx,</span></a>
+<a name="173"><span class="lineNum">     173 </span><span class="lineCov">          3 :             top: widget.position.dy,</span></a>
+<a name="174"><span class="lineNum">     174 </span><span class="lineCov">          1 :             child: GestureDetector(</span></a>
+<a name="175"><span class="lineNum">     175 </span><span class="lineNoCov">          0 :               onPanDown: (details) {</span></a>
+<a name="176"><span class="lineNum">     176 </span><span class="lineNoCov">          0 :                 if (!widget.isAssembled) {</span></a>
+<a name="177"><span class="lineNum">     177 </span><span class="lineNoCov">          0 :                   touchOffset = details.localPosition;</span></a>
+<a name="178"><span class="lineNum">     178 </span><span class="lineNoCov">          0 :                   widget.previousPosition = widget.position;</span></a>
+<a name="179"><span class="lineNum">     179 </span><span class="lineNoCov">          0 :                   state.database!</span></a>
+<a name="180"><span class="lineNum">     180 </span><span class="lineNoCov">          0 :                       .child('${state.sessionId!}/pieces/${widget.pieceId}')</span></a>
+<a name="181"><span class="lineNum">     181 </span><span class="lineNoCov">          0 :                       .update({'isOccupied': true});</span></a>
+<a name="182"><span class="lineNum">     182 </span>            :                 }</a>
+<a name="183"><span class="lineNum">     183 </span>            :               },</a>
+<a name="184"><span class="lineNum">     184 </span><span class="lineNoCov">          0 :               onPanUpdate: (details) {</span></a>
+<a name="185"><span class="lineNum">     185 </span><span class="lineNoCov">          0 :                 if (!widget.isAssembled) {</span></a>
+<a name="186"><span class="lineNum">     186 </span><span class="lineNoCov">          0 :                   setState(() {</span></a>
+<a name="187"><span class="lineNum">     187 </span><span class="lineNoCov">          0 :                     widget.position = details.globalPosition - touchOffset;</span></a>
+<a name="188"><span class="lineNum">     188 </span>            :                   });</a>
+<a name="189"><span class="lineNum">     189 </span><span class="lineNoCov">          0 :                   state.database!</span></a>
+<a name="190"><span class="lineNum">     190 </span><span class="lineNoCov">          0 :                       .child('${state.sessionId!}/pieces/${widget.pieceId}')</span></a>
+<a name="191"><span class="lineNum">     191 </span><span class="lineNoCov">          0 :                       .update({</span></a>
+<a name="192"><span class="lineNum">     192 </span><span class="lineNoCov">          0 :                     'position': {</span></a>
+<a name="193"><span class="lineNum">     193 </span><span class="lineNoCov">          0 :                       'left': widget.position.dx,</span></a>
+<a name="194"><span class="lineNum">     194 </span><span class="lineNoCov">          0 :                       'top': widget.position.dy,</span></a>
+<a name="195"><span class="lineNum">     195 </span>            :                     }</a>
+<a name="196"><span class="lineNum">     196 </span>            :                   });</a>
+<a name="197"><span class="lineNum">     197 </span>            :                 }</a>
+<a name="198"><span class="lineNum">     198 </span>            :               },</a>
+<a name="199"><span class="lineNum">     199 </span><span class="lineNoCov">          0 :               onPanEnd: (details) {</span></a>
+<a name="200"><span class="lineNum">     200 </span><span class="lineNoCov">          0 :                 if (!widget.isAssembled) {</span></a>
+<a name="201"><span class="lineNum">     201 </span><span class="lineNoCov">          0 :                   state.database!</span></a>
+<a name="202"><span class="lineNum">     202 </span><span class="lineNoCov">          0 :                       .child('${state.sessionId!}/pieces/${widget.pieceId}')</span></a>
+<a name="203"><span class="lineNum">     203 </span><span class="lineNoCov">          0 :                       .update({</span></a>
+<a name="204"><span class="lineNum">     204 </span>            :                     'isOccupied': false,</a>
+<a name="205"><span class="lineNum">     205 </span>            :                   });</a>
+<a name="206"><span class="lineNum">     206 </span><span class="lineNoCov">          0 :                   if (widget.position.dx &lt; boardLeft ||</span></a>
+<a name="207"><span class="lineNum">     207 </span><span class="lineNoCov">          0 :                       widget.position.dx &gt; boardLeft + boardWidth ||</span></a>
+<a name="208"><span class="lineNum">     208 </span><span class="lineNoCov">          0 :                       widget.position.dy &lt; boardTop ||</span></a>
+<a name="209"><span class="lineNum">     209 </span><span class="lineNoCov">          0 :                       widget.position.dy &gt; boardTop + boardHeight) {</span></a>
+<a name="210"><span class="lineNum">     210 </span><span class="lineNoCov">          0 :                     setState(() {</span></a>
+<a name="211"><span class="lineNum">     211 </span><span class="lineNoCov">          0 :                       widget.position = widget.previousPosition;</span></a>
+<a name="212"><span class="lineNum">     212 </span>            :                     });</a>
+<a name="213"><span class="lineNum">     213 </span><span class="lineNoCov">          0 :                     state.database!</span></a>
+<a name="214"><span class="lineNum">     214 </span><span class="lineNoCov">          0 :                         .child('${state.sessionId!}/pieces/${widget.pieceId}')</span></a>
+<a name="215"><span class="lineNum">     215 </span><span class="lineNoCov">          0 :                         .update({</span></a>
+<a name="216"><span class="lineNum">     216 </span><span class="lineNoCov">          0 :                       'position': {</span></a>
+<a name="217"><span class="lineNum">     217 </span><span class="lineNoCov">          0 :                         'left': widget.position.dx,</span></a>
+<a name="218"><span class="lineNum">     218 </span><span class="lineNoCov">          0 :                         'top': widget.position.dy,</span></a>
+<a name="219"><span class="lineNum">     219 </span>            :                       },</a>
+<a name="220"><span class="lineNum">     220 </span>            :                     });</a>
+<a name="221"><span class="lineNum">     221 </span>            :                   }</a>
+<a name="222"><span class="lineNum">     222 </span><span class="lineNoCov">          0 :                   if ((widget.position.dx -</span></a>
+<a name="223"><span class="lineNum">     223 </span><span class="lineNoCov">          0 :                                   boardLeft -</span></a>
+<a name="224"><span class="lineNum">     224 </span><span class="lineNoCov">          0 :                                   state.gridPositions[widget.pieceId].item1)</span></a>
+<a name="225"><span class="lineNum">     225 </span><span class="lineNoCov">          0 :                               .abs() &lt;=</span></a>
+<a name="226"><span class="lineNum">     226 </span>            :                           5 &amp;&amp;</a>
+<a name="227"><span class="lineNum">     227 </span><span class="lineNoCov">          0 :                       (widget.position.dy -</span></a>
+<a name="228"><span class="lineNum">     228 </span><span class="lineNoCov">          0 :                                   boardTop -</span></a>
+<a name="229"><span class="lineNum">     229 </span><span class="lineNoCov">          0 :                                   state.gridPositions[widget.pieceId].item2)</span></a>
+<a name="230"><span class="lineNum">     230 </span><span class="lineNoCov">          0 :                               .abs() &lt;=</span></a>
+<a name="231"><span class="lineNum">     231 </span>            :                           5) {</a>
+<a name="232"><span class="lineNum">     232 </span><span class="lineNoCov">          0 :                     setState(() {</span></a>
+<a name="233"><span class="lineNum">     233 </span><span class="lineNoCov">          0 :                       widget.position = Offset(</span></a>
+<a name="234"><span class="lineNum">     234 </span><span class="lineNoCov">          0 :                           state.gridPositions[widget.pieceId].item1.toDouble() +</span></a>
+<a name="235"><span class="lineNum">     235 </span>            :                               boardLeft,</a>
+<a name="236"><span class="lineNum">     236 </span><span class="lineNoCov">          0 :                           state.gridPositions[widget.pieceId].item2.toDouble() +</span></a>
+<a name="237"><span class="lineNum">     237 </span>            :                               boardTop);</a>
+<a name="238"><span class="lineNum">     238 </span><span class="lineNoCov">          0 :                       state.database!</span></a>
+<a name="239"><span class="lineNum">     239 </span><span class="lineNoCov">          0 :                           .child('${state.sessionId!}/pieces/${widget.pieceId}')</span></a>
+<a name="240"><span class="lineNum">     240 </span><span class="lineNoCov">          0 :                           .update({</span></a>
+<a name="241"><span class="lineNum">     241 </span><span class="lineNoCov">          0 :                         'position': {</span></a>
+<a name="242"><span class="lineNum">     242 </span><span class="lineNoCov">          0 :                           'left': widget.position.dx,</span></a>
+<a name="243"><span class="lineNum">     243 </span><span class="lineNoCov">          0 :                           'top': widget.position.dy,</span></a>
+<a name="244"><span class="lineNum">     244 </span>            :                         }</a>
+<a name="245"><span class="lineNum">     245 </span>            :                       });</a>
+<a name="246"><span class="lineNum">     246 </span><span class="lineNoCov">          0 :                       widget.isAssembled = true;</span></a>
+<a name="247"><span class="lineNum">     247 </span><span class="lineNoCov">          0 :                       state.database!</span></a>
+<a name="248"><span class="lineNum">     248 </span><span class="lineNoCov">          0 :                           .child('${state.sessionId!}/pieces/${widget.pieceId}')</span></a>
+<a name="249"><span class="lineNum">     249 </span><span class="lineNoCov">          0 :                           .update({'isAssembled': true});</span></a>
+<a name="250"><span class="lineNum">     250 </span>            :                     });</a>
+<a name="251"><span class="lineNum">     251 </span><span class="lineNoCov">          0 :                     state.components--;</span></a>
+<a name="252"><span class="lineNum">     252 </span><span class="lineNoCov">          0 :                     state.database!</span></a>
+<a name="253"><span class="lineNum">     253 </span><span class="lineNoCov">          0 :                         .child('${state.sessionId!}/')</span></a>
+<a name="254"><span class="lineNum">     254 </span><span class="lineNoCov">          0 :                         .update({'components': state.components});</span></a>
+<a name="255"><span class="lineNum">     255 </span><span class="lineNoCov">          0 :                     if (state.components == 0) {</span></a>
+<a name="256"><span class="lineNum">     256 </span><span class="lineNoCov">          0 :                       state.setGameOver(true);</span></a>
+<a name="257"><span class="lineNum">     257 </span><span class="lineNoCov">          0 :                       state.database!</span></a>
+<a name="258"><span class="lineNum">     258 </span><span class="lineNoCov">          0 :                           .child('${state.sessionId}/')</span></a>
+<a name="259"><span class="lineNum">     259 </span><span class="lineNoCov">          0 :                           .update({'isGameOver': state.isGameOver});</span></a>
+<a name="260"><span class="lineNum">     260 </span>            :                     }</a>
+<a name="261"><span class="lineNum">     261 </span>            :                   }</a>
+<a name="262"><span class="lineNum">     262 </span>            :                 }</a>
+<a name="263"><span class="lineNum">     263 </span>            :               },</a>
+<a name="264"><span class="lineNum">     264 </span><span class="lineCov">          1 :               child: AnimatedBuilder(</span></a>
+<a name="265"><span class="lineNum">     265 </span><span class="lineCov">          1 :                 animation: _opacityAnimation,</span></a>
+<a name="266"><span class="lineNum">     266 </span><span class="lineCov">          2 :                 builder: (context, child) =&gt; Opacity(</span></a>
+<a name="267"><span class="lineNum">     267 </span><span class="lineCov">          2 :                   opacity: widget.isAssembled ? _opacityAnimation.value : 1.0,</span></a>
+<a name="268"><span class="lineNum">     268 </span>            :                   child: child,</a>
+<a name="269"><span class="lineNum">     269 </span>            :                 ),</a>
+<a name="270"><span class="lineNum">     270 </span><span class="lineCov">          1 :                 child: SizedBox(</span></a>
+<a name="271"><span class="lineNum">     271 </span><span class="lineCov">          2 :                   width: state.pieceWidth.toDouble(),</span></a>
+<a name="272"><span class="lineNum">     272 </span><span class="lineCov">          2 :                   height: state.pieceHeight.toDouble(),</span></a>
+<a name="273"><span class="lineNum">     273 </span><span class="lineCov">          1 :                   child: FittedBox(</span></a>
+<a name="274"><span class="lineNum">     274 </span>            :                     fit: BoxFit.contain,</a>
+<a name="275"><span class="lineNum">     275 </span><span class="lineCov">          2 :                     child: widget.subImage,</span></a>
+<a name="276"><span class="lineNum">     276 </span>            :                   ),</a>
+<a name="277"><span class="lineNum">     277 </span>            :                 ),</a>
+<a name="278"><span class="lineNum">     278 </span>            :               ),</a>
+<a name="279"><span class="lineNum">     279 </span>            :             ),</a>
+<a name="280"><span class="lineNum">     280 </span>            :           )</a>
+<a name="281"><span class="lineNum">     281 </span>            :         ],</a>
+<a name="282"><span class="lineNum">     282 </span>            :       );</a>
+<a name="283"><span class="lineNum">     283 </span>            :     });</a>
+<a name="284"><span class="lineNum">     284 </span>            :   }</a>
+<a name="285"><span class="lineNum">     285 </span>            : }</a>
+</pre>
+      </td>
+    </tr>
+  </table>
+  <br>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+    <tr><td class="versionInfo">Generated by: <a href="https://github.com/linux-test-project/lcov" target="_parent">LCOV version 1.16</a></td></tr>
+  </table>
+  <br>
+
+</body>
+</html>
