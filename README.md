@@ -1,7 +1,5 @@
 # Puzzial SRS
 
-\*- Team Young Justice
-
 <br />
 <br />
 
