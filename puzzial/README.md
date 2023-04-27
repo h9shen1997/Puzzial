@@ -41,9 +41,6 @@ Contributions are welcome! If you would like to contribute to this project, plea
 Contact:
 
 - Haotian Shen: GitHub h9shen1997
-- Qiaozhi Liu: GitHub george-q-liu
-- Xinyi Gao: GitHub vindygao1997
-- Xinyi Cheng: GitHub xinyicheng1998
 
 ### Fork the repository.
 
